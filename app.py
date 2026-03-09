@@ -94,8 +94,15 @@ BOOK_FILES = {
 VECTOR_DB_PATH = "./vector_database"
 EMBED_MODEL = "all-MiniLM-L6-v2"
 
-nltk.download("punkt")
-nltk.download("stopwords")
+try:
+    nltk.data.find("tokenizers/punkt")
+except LookupError:
+    nltk.download("punkt")
+
+try:
+    nltk.data.find("corpora/stopwords")
+except LookupError:
+    nltk.download("stopwords")
 
 stop_words = set(stopwords.words("english"))
 stemmer = PorterStemmer()

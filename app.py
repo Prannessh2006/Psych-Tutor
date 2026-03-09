@@ -9,7 +9,7 @@ from nltk.corpus import stopwords
 import re
 from langchain_groq import ChatGroq
 import time
-
+os.environ["ANONYMIZED_TELEMETRY"] = "False"
 
 st.set_page_config(
     page_title="PsychTutor",

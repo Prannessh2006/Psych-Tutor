@@ -11,19 +11,12 @@ from langchain_groq import ChatGroq
 import time
 
 
-# -----------------------------
-# PAGE CONFIG
-# -----------------------------
-
 st.set_page_config(
     page_title="PsychTutor",
     page_icon="🧠",
     layout="wide"
 )
 
-# -----------------------------
-# CUSTOM CSS (UI DESIGN)
-# -----------------------------
 
 st.markdown("""
 <style>
@@ -101,20 +94,12 @@ BOOK_FILES = {
 VECTOR_DB_PATH = "./vector_database"
 EMBED_MODEL = "all-MiniLM-L6-v2"
 
-
-# -----------------------------
-# NLTK SETUP
-# -----------------------------
-
 nltk.download("punkt")
 nltk.download("stopwords")
 
 stop_words = set(stopwords.words("english"))
 stemmer = PorterStemmer()
 
-# -----------------------------
-# LLM
-# -----------------------------
 
 GROQ_KEY = st.secrets["GROQ_API_KEY"]
 
@@ -123,9 +108,6 @@ LLM = ChatGroq(
     groq_api_key=GROQ_KEY
 )
 
-# -----------------------------
-# LOAD BOOKS
-# -----------------------------
 
 def load_books():
 
@@ -140,10 +122,6 @@ def load_books():
 
     return paths
 
-
-# -----------------------------
-# EXTRACT TEXT
-# -----------------------------
 
 def extract_text(pdf):
 
@@ -160,11 +138,6 @@ def extract_text(pdf):
 
     return pages
 
-
-# -----------------------------
-# TEXT PREPROCESS
-# -----------------------------
-
 def preprocess(text):
 
     text = re.sub(r"[^a-zA-Z\s]", "", text)
@@ -177,10 +150,6 @@ def preprocess(text):
 
     return " ".join(tokens)
 
-
-# -----------------------------
-# SEMANTIC CHUNKING
-# -----------------------------
 
 def chunk_text(text, chunk_size=500, overlap=100):
 
@@ -197,11 +166,6 @@ def chunk_text(text, chunk_size=500, overlap=100):
         chunks.append(chunk)
 
     return chunks
-
-
-# -----------------------------
-# BUILD VECTOR DATABASE
-# -----------------------------
 
 @st.cache_resource
 def build_db():
@@ -255,9 +219,6 @@ def build_db():
 
 embed, collection = build_db()
 
-# -----------------------------
-# SEARCH
-# -----------------------------
 
 def search(query):
 
@@ -285,10 +246,6 @@ def search(query):
 
     return combined
 
-
-# -----------------------------
-# ANSWER GENERATION
-# -----------------------------
 
 def generate_answer(query):
 

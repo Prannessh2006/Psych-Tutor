@@ -1,0 +1,4 @@
+vector_database/
+__pycache__/
+*.pyc
+.streamlit/secrets.toml

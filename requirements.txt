@@ -1,0 +1,15 @@
+streamlit
+requests
+nltk
+pdfplumber
+tqdm
+sentence-transformers
+chromadb
+langchain
+langchain-groq
+torch
+transformers
+numpy
+pandas
+scikit-learn
+pillow
